@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import compression from 'compression';
 import { fileURLToPath } from 'url';
-import restaurants from './routers/restaurant.router.ts';
+import restaurants from './routers/restaurant.router.js';
 
 dotenv.config();
 const app = express();
@@ -24,7 +24,7 @@ function html(req: { accepts: (arg0: string) => any; }, _: any, next: (arg0?: st
   return next('route');
 }
 
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, '../../client/dist')));
 
 
 app.get('/api/alive', (req, res) => {

@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
-import { sequelize } from "../db/init.ts";
-import Restaurant from "./Restaurant.model.ts";
+import { sequelize } from "../db/init.js";
+import Restaurant from "./Restaurant.model.js";
 
 const Category = sequelize.define('Category', {
     id: {

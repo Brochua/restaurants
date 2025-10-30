@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../styles/RestaurantModal.css'
 
 export default function RestaurantModal({ close }: { close: () => void }) {
@@ -28,6 +28,9 @@ export default function RestaurantModal({ close }: { close: () => void }) {
         try {
             const createResponse = await fetch('/api/restaurants', {
                 method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify({
                     restaurant: restaurantData,
                     cuisines,

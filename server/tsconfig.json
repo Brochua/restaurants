@@ -11,7 +11,7 @@
     "module": "ESNext",                     // Keep native ESM imports
     "moduleResolution": "node",          // Works best with ts-node/esm
     "esModuleInterop": true,
-    "outDir": "./dist",                     // Where compiled JS will go
+    "outDir": "src/dist",                     // Where compiled JS will go
     "rootDir": "./",
     "types": [],
     // For nodejs:
@@ -43,6 +43,6 @@
     "esm": true,
     "experimentalSpecifierResolution": "node"
   },
-  "exclude": ["node_modules", "dist"],       // Skip built & dependency files
-  "include": ["./**/*.ts", "scripts/seedDb.js"],                 // Include all TS files
+  "exclude": ["src/node_modules", "src/dist"],       // Skip built & dependency files
+  "include": ["./**/*.ts", "src/scripts/seedDb.js"],                 // Include all TS files
 }

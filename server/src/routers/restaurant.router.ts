@@ -1,5 +1,5 @@
 import express from 'express';
-import { getRestaurants, getRestaurant, getPageCount, createRestaurant } from '../controllers/restaurant.controller.ts';
+import { getRestaurants, getRestaurant, getPageCount, createRestaurant } from '../controllers/restaurant.controller.js';
 const restaurants = express.Router();
 
 restaurants.get('/restaurants', getRestaurants);

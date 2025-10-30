@@ -1,9 +1,8 @@
 import type { NextFunction, Request, Response } from 'express';
-import Restaurant from '../models/Restaurant.model.ts';
+import Restaurant from '../models/Restaurant.model.js';
 import type { ParsedQs } from 'qs';
-import Category from '../models/Category.model.ts';
-import Cuisine from '../models/Cuisine.model.ts';
-import { sequelize } from '../db/init.ts';
+import Category from '../models/Category.model.js';
+import Cuisine from '../models/Cuisine.model.js';
 import type { Includeable, WhereOptions } from 'sequelize';
 
 /**
@@ -178,6 +177,7 @@ async function getTotalPages(limit: number, where: WhereOptions = [], include: I
  * @param {NextFunction} next - Next function 
  */
 async function createRestaurant(req: Request, res: Response, next: NextFunction) {
+  console.log(req)
   const { restaurant, categories, cuisines } = req.body;
 
   if (!restaurant) {

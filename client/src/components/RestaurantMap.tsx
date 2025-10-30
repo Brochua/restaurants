@@ -14,7 +14,7 @@ export default function RestaurantMap({restaurantsMap, focus}: {restaurantsMap: 
     const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
     const restaurants = useMemo(() => {
-        return Object.values(restaurantsMap).filter(r => !!r.enabled)
+        return Object.values(restaurantsMap).filter(r => !!r.enabled && r.latitude && r.longitude)
     }, [restaurantsMap]);
 
     return <>
@@ -22,8 +22,6 @@ export default function RestaurantMap({restaurantsMap, focus}: {restaurantsMap: 
             center={[45.5, -73.6]}
             zoom={12}
             zoomControl={true}
-            // updateWhenZooming={false}
-            // updateWhenIdle={true}
             preferCanvas={true}
             minZoom={10}
             maxZoom={16}

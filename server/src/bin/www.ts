@@ -1,12 +1,12 @@
 #!/usr/bin/env ts-node
-import app from '../api.ts';
+import app from '../api.js';
 import dotenv from 'dotenv';
-import { sequelize, connectDB } from '../db/init.ts';
+import { sequelize, connectDB } from '../db/init.js';
 import { Server } from 'http';
 
 dotenv.config();
 
-const port = process.env.PORT || 3000;
+const port = Number(process.env.PORT || 3000);
 const MAX_RETRIES_SERVER = Number(process.env.SERVER_MAX_RETRIES || 3);
 const MAX_RETRIES_DB = Number(process.env.DB_CONNECTION_MAX_RETRIES || 3);
 
@@ -15,7 +15,7 @@ let server: Server;
 for (let i = 0; i < MAX_RETRIES_SERVER; i++) {
     try {
         server = app.listen(port, () => 
-            console.log(`Server listening at port ${port} in ${app.get('env')} mode`)
+            console.log(`Server listening at port ${port} in ${app.get('env')} mode at 0.0.0.0`)
         )
         break;
     } catch (e) {

@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import { sequelize } from "../db/init.ts";
+import { sequelize } from "../db/init.js";
 
 const Restaurant = sequelize.define('Restaurant', {
     name: {

@@ -4,7 +4,33 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
 #root {
+    height: 100%;
+
     display: flex;
     justify-content: center;
+}
+
+#restaurants-map-page {
+    height: 100%;
+
+    flex: 1;
+
+    display: flex;
+}
+
+aside#restaurant-list {
+    height: 100%;
+
+    flex: 3;
+
+    overflow: scroll;
+}
+
+section#map {
+    flex: 7;
 }

@@ -1,0 +1,37 @@
+{
+  "name": "restaurant-server",
+  "version": "1.0.0",
+  "description": "Backend for the porogoramer restaurant website",
+  "main": "bin/www",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/bin/www.js",
+    "dev": "nodemon --watch ./ --ext ts,json --exec node --loader ts-node/esm bin/www.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "tsx scripts/seedDb.ts"
+  },
+  "keywords": [
+    "restaurant"
+  ],
+  "author": "Axel Brochu",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@types/node": "^24.9.1",
+    "compression": "^1.8.1",
+    "express": "^5.1.0",
+    "mysql2": "^3.15.3",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.8.1",
+    "@types/express": "^5.0.4",
+    "dotenv": "^17.2.3",
+    "eslint": "^9.38.0",
+    "nodemon": "^3.1.10",
+    "sequelize-cli": "^6.6.3",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

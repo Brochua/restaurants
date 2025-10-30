@@ -1,0 +1,52 @@
+#modal-wrapper {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(10, 10, 10, 0.8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-wrapper .modal {
+    width: 60%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border-radius: 5%;
+    border: 2px solid black;
+    background-color: lightblue;
+}
+
+#modal-wrapper .modal form {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#modal-wrapper .modal button {
+    padding: 5px;
+}
+
+#modal-wrapper .modal fieldset {
+    width: 80%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+#modal-wrapper .modal fieldset select, 
+#modal-wrapper .modal fieldset input {
+    width: 60%;
+
+    display: flex;
+    justify-content: space-between;
+}

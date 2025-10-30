@@ -1,0 +1,176 @@
+[
+    {
+      "name": "Le Marquis Sans Gluten",
+      "notes": "100% gluten-free bakery known for croissants, bagels, breads, tarts, and pastries, with online ordering available.",
+      "type": ["bakery"],
+      "cuisine": ["french"]
+    },
+    {
+      "name": "Cantine Panella Sans Gluten",
+      "notes": "Fully gluten-free bakery and restaurant in Petite-Patrie offering lasagna, noodle dishes, sandwiches, cakes, pastries, and more. Certified safe for celiacs.",
+      "type": ["bakery", "restaurant"],
+      "cuisine": ["italian"]
+    },
+    {
+      "name": "L’Artisan Délices Sans Gluten et Sans Lait",
+      "notes": "100% gluten-free and dairy-free bakery with pastries, patisserie, quiches, turnovers, pizzas, and breads. Frozen products available.",
+      "type": ["bakery"],
+      "cuisine": ["french"]
+    },
+    {
+      "name": "Parc Sans Gluten",
+      "notes": "100% gluten-free bakery near Parc Lafontaine offering tarts, eclairs, croissants, and bread.",
+      "type": ["bakery"],
+      "cuisine": ["french"]
+    },
+    {
+      "name": "Cookie Stephanie",
+      "notes": "Gluten-free bakery specializing in breads, cupcakes, and cookies.",
+      "type": ["bakery"],
+      "cuisine": ["desserts"]
+    },
+    {
+      "name": "Doughnats",
+      "notes": "Gluten-free donuts confirmed safe for celiacs.",
+      "type": ["bakery"],
+      "cuisine": ["desserts"]
+    },
+    {
+      "name": "La Brunelle",
+      "notes": "BYOB restaurant willing to adjust meals for celiac needs.",
+      "type": ["restaurant"],
+      "cuisine": ["french"]
+    },
+    {
+      "name": "Audacieuse Vanille",
+      "notes": "Gluten-free bakery in Verdun, temporarily closed but planning to reopen.",
+      "type": ["bakery"],
+      "cuisine": ["desserts"]
+    },
+    {
+      "name": "Vegateau",
+      "notes": "100% vegan and gluten-free bakery with cupcakes, cakes, tarts, cookies, and ice cream.",
+      "type": ["bakery"],
+      "cuisine": ["desserts"]
+    },
+    {
+      "name": "Susie Sans Gluten",
+      "notes": "West Island gluten-free bakery with cakes and packaged gluten-free products, including pastas and crackers.",
+      "type": ["bakery"],
+      "cuisine": ["varied"]
+    },
+    {
+      "name": "Delicious Without",
+      "notes": "West Island bakery free of gluten, nuts, dairy, soy, and sesame; kosher and allergen-free facility.",
+      "type": ["bakery"],
+      "cuisine": ["varied"]
+    },
+    {
+      "name": "Cote-St-Luc BBQ",
+      "notes": "Fries fried in separate oil, and gravy made with corn starch instead of wheat flour—consistently gluten-free poutine. West Island location also has gluten-free chicken wings.",
+      "type": ["restaurant"],
+      "cuisine": ["bbq"]
+    },
+    {
+      "name": "Modavie",
+      "notes": "Downtown restaurant offering gluten-free poutine with a dedicated fryer and celiac-safe gravy.",
+      "type": ["restaurant"],
+      "cuisine": ["french"]
+    },
+    {
+      "name": "Hero Burgers",
+      "notes": "Downtown near Musée des Beaux Arts, casual spot with gluten-free poutine, buns, dedicated fryers, and a gluten-free menu.",
+      "type": ["restaurant"],
+      "cuisine": ["burgers"]
+    },
+    {
+      "name": "Ottavio’s",
+      "notes": "Gluten-free pizza with cross-contamination precautions. Also offers truffle and Parmesan fries.",
+      "type": ["restaurant"],
+      "cuisine": ["italian"]
+    },
+    {
+      "name": "Pizza No. 900 (Monkland)",
+      "notes": "Neapolitan-style gluten-free pizza, with strict celiac-friendly preparation.",
+      "type": ["restaurant"],
+      "cuisine": ["italian"]
+    },
+    {
+      "name": "TapiGo!",
+      "notes": "100% gluten-free tapioca crepe shop with savoury and sweet options, plus açaí bowls and pao de queijo.",
+      "type": ["bakery", "restaurant"],
+      "cuisine": ["brazilian"]
+    },
+    {
+      "name": "Arepera du Plateau",
+      "notes": "Fully gluten-free facility serving corn arepas with various fillings and fried plantains.",
+      "type": ["restaurant"],
+      "cuisine": ["venezuelan"]
+    },
+    {
+      "name": "D’maïs",
+      "notes": "Gluten-free corn empanadas.",
+      "type": ["restaurant"],
+      "cuisine": ["latin american"]
+    },
+    {
+      "name": "Venice",
+      "notes": "Gluten-free menu options including poke bowls, tacos, and soups.",
+      "type": ["restaurant"],
+      "cuisine": ["california fusion"]
+    },
+    {
+      "name": "Crêperie Du Marché",
+      "notes": "Dedicated gluten-free buckwheat crepes in Marché Jean-Talon.",
+      "type": ["bakery", "restaurant"],
+      "cuisine": ["french"]
+    },
+    {
+      "name": "Mucca",
+      "notes": "Little Italy newcomer with a separate gluten-free prep station for pasta, bread, and meals.",
+      "type": ["restaurant"],
+      "cuisine": ["italian"]
+    },
+    {
+      "name": "Abe & Mary’s",
+      "notes": "Offers gluten-free soups, salads, and separately toasted bread; staff knowledgeable about celiac.",
+      "type": ["restaurant"],
+      "cuisine": ["café/deli"]
+    },
+    {
+      "name": "Restaurant Melisse",
+      "notes": "80% of the menu is gluten-free, with knowledgeable staff.",
+      "type": ["restaurant"],
+      "cuisine": ["french"]
+    },
+    {
+      "name": "Ristorante Quattro",
+      "notes": "Gluten-free options available with menu notes about modifications.",
+      "type": ["restaurant"],
+      "cuisine": ["italian"]
+    },
+    {
+      "name": "Breizh Café Montreal",
+      "notes": "Authentic buckwheat crepes, 100% gluten-free, with sweet and savoury choices.",
+      "type": ["bakery", "restaurant"],
+      "cuisine": ["french (breton)"]
+    },
+    {
+      "name": "Satu Lagi",
+      "notes": "100% gluten-free Indo-Malay tapas bar with satays and rice dishes.",
+      "type": ["restaurant"],
+      "cuisine": ["indonesian/malaysian"]
+    },
+    {
+      "name": "Krapow",
+      "notes": "Dedicated gluten-free Southeast Asian restaurant in Mont-Royal with a small but flavorful menu.",
+      "type": ["restaurant"],
+      "cuisine": ["thai"]
+    },
+    {
+      "name": "La Bolo à Lolo",
+      "notes": "Dedicated gluten-free grocery store in Mont-Royal with a small rotating lunch counter menu.",
+      "type": ["bakery", "restaurant"],
+      "cuisine": ["varied"]
+    }
+  ]

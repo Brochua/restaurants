@@ -1,17 +1,21 @@
 interface IRestaurant {
+    id: string;
     name: string;
+    description: string;
     notes: string;
-    type: string[];
-    cuisine: string[];
-    coordinates: [number, number];
+    categories: string[];
+    cuisines: string[];
+    latitude: number;
+    longitude: number;
     area?: string;
     address: string;
     phoneNumber: string;
     rating: number;
     url: string;
-    hours?: Record<string, string>;
+    hours?: string[];
     website?: string;
     price?: number;
+    enabled?: boolean;
 }
 
 

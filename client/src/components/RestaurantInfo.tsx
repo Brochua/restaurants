@@ -1,13 +1,39 @@
 import { IRestaurant } from "../utils";
+import '../styles/RestaurantInfo.css'
+import Star from "./Star";
+
+function capitalize(s: string) {
+    return s[0].toUpperCase() + s.slice(1);
+}
 
 export default function RestaurantInfo({restaurant}: {restaurant: IRestaurant}) {
+    const stars = [];
+    let rating = restaurant.rating;
+    for (let i = 0; i < 5; i++) {
+        if (rating >= 1) {
+            stars.push(<Star key={i} percentage={1} />);
+        } else {
+            stars.push(<Star key={i} percentage={rating < 0 ? 0 : rating} />);
+        }
+        rating--;
+    }
+    
     return <div>
-        <h3>{restaurant.name}</h3>
-        <p>{restaurant.type} | {restaurant.cuisine}</p>
+        <h3>
+            {restaurant.url ? 
+                <a href={restaurant.url}>{restaurant.name}</a> :
+                restaurant.name
+            }
+        </h3>
+        <p>{restaurant.categories.map(t => capitalize(t))} | {restaurant.cuisines.map(c => capitalize(c))}</p>
         <p>{restaurant.notes}</p>
         <p>{restaurant.phoneNumber}</p>
-        <p>{restaurant.rating}</p> 
-        {restaurant.url && <a href={restaurant.url}>Website</a>}
-        <p>{restaurant.hours?.toString()}</p>    
+        <div>
+            {stars}
+            ({restaurant.rating})
+        </div>
+        <ul>
+            {restaurant.hours?.map(h => <li>{h}</li>)}
+        </ul>    
     </div>
 }

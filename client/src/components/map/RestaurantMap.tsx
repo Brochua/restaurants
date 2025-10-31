@@ -1,11 +1,11 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import { IRestaurant } from '../utils';
+import { IRestaurant } from '../../utils';
 import RestaurantInfo from './RestaurantInfo';
 import MapPanHandler from './MapPanHandler';
-import createSvgIcon from './MarkerIcon';
+import createSvgIcon from '../icons/MarkerIcon';
 import { useMemo } from 'react';
 import 'leaflet/dist/leaflet.css';
-import '../styles/RestaurantMap.css';
+import '../../styles/RestaurantMap.css';
 
 
 export default function RestaurantMap({restaurantsMap, focus}: {restaurantsMap: {[key: string]: IRestaurant}, focus?: string}) {

@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useEffect } from "react";
-import "../styles/Restaurant.css";
-import { RestaurantsMapContext } from "../hooks/useRestaurantsMap";
-import { IRestaurant } from "../utils";
+import "../../styles/Restaurant.css";
+import { RestaurantsMapContext } from "../../hooks/useRestaurantsMap";
+import { IRestaurant } from "../../utils";
 
 export default function Restaurant({restaurant, setFocus}: {restaurant: IRestaurant, setFocus: React.Dispatch<React.SetStateAction<string | undefined>>}) {
     const {setRestaurantsMap} = useContext(RestaurantsMapContext);

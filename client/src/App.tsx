@@ -1,10 +1,10 @@
-import RestaurantList from './components/RestaurantList';
+import RestaurantPage from './components/RestaurantPage';
 import { RestaurantMapProvider } from './hooks/useRestaurantsMap';
 import './styles/App.css';
 
 function App() {
   return <RestaurantMapProvider>
-    <RestaurantList />
+    <RestaurantPage />
   </RestaurantMapProvider> 
 }
 

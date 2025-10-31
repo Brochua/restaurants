@@ -1,0 +1,19 @@
+.typeahead-search {
+    width: 100%;
+}
+
+.typeahead-options {
+    width: 100%;
+    
+    position: fixed;
+
+    background-color: white;
+    border: 1px solid black;
+}
+
+.typeahead-option {
+    display: flex;
+    width: 100%;
+
+    gap: 4px;
+}

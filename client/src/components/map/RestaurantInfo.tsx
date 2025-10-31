@@ -1,20 +1,12 @@
-import { IRestaurant } from "../utils";
-import '../styles/RestaurantInfo.css'
-import Star from "./Star";
-
-function capitalize(s: string) {
-    return s[0].toUpperCase() + s.slice(1);
-}
+import { capitalize, IRestaurant } from "../../utils";
+import '../../styles/RestaurantInfo.css'
+import Star from "../icons/Star";
 
 export default function RestaurantInfo({restaurant}: {restaurant: IRestaurant}) {
     const stars = [];
     let rating = restaurant.rating;
     for (let i = 0; i < 5; i++) {
-        if (rating >= 1) {
-            stars.push(<Star key={i} percentage={1} />);
-        } else {
-            stars.push(<Star key={i} percentage={rating < 0 ? 0 : rating} />);
-        }
+        stars.push(<Star key={i} percentage={rating < 0 ? 0 : rating} />);
         rating--;
     }
     

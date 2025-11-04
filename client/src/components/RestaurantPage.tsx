@@ -3,7 +3,7 @@ import { IRestaurant } from "../utils";
 import RestaurantMap from "./map/RestaurantMap";
 import { RestaurantsMapContext } from "../hooks/useRestaurantsMap";
 import { createPortal } from "react-dom";
-import RestaurantModal from "./RestaurantModal";
+import RestaurantModal from "./addRestaurant/RestaurantModal";
 import RestaurantList from "./list/RestaurantList";
 import '../styles/RestaurantList.css';
 

@@ -1,36 +1,82 @@
-import { useMapsLibrary } from "@vis.gl/react-google-maps";
-import { useState, useRef, useEffect } from "react";
+import { ControlPosition, MapControl, useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
+import { useState, useCallback, FormEvent } from "react";
+import { useAutocompleteSuggestions } from "../../hooks/useAutocompleteSuggestions";
+import '../../styles/PlacesAutocomplete.css';
+import { useDebounce } from "../../hooks/useDebounce";
 
-interface PlaceAutocompleteProps {
-  onPlaceSelect: (place: google.maps.places.PlaceResult | null) => void;
+interface Props {
+  onPlaceSelect: (place: google.maps.places.Place | null) => void;
 }
 
-export default function PlaceAutocomplete({ onPlaceSelect }: PlaceAutocompleteProps) {
-  const [placeAutocomplete, setPlaceAutocomplete] = useState<google.maps.places.Autocomplete | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+export default function PlaceAutocomplete({onPlaceSelect}: Props) {
+  const map = useMap();
   const places = useMapsLibrary('places');
 
-  useEffect(() => {
-    if (!places || !inputRef.current) return;
+  const [inputValue, setInputValue] = useState<string>('');
+  // Add a delay to not waste API calls
+  const debouncedValue = useDebounce(inputValue, 400);
+  const {suggestions, resetSession} = useAutocompleteSuggestions(debouncedValue, {
+    includedPrimaryTypes: ['restaurant', 'store', 'cafe', 'supermarket', 'bar'],
+    locationBias: map?.getBounds()?.toJSON()
+  });
 
-    const options = {
-      fields: ['geometry', 'name', 'formatted_address']
-    };
+  const handleInput = useCallback((event: FormEvent<HTMLInputElement>) => {
+    setInputValue((event.target as HTMLInputElement).value);
+  }, []);
 
-    setPlaceAutocomplete(new places.Autocomplete(inputRef.current, options));
-  }, [places]);
+  const handleSuggestionClick = useCallback(
+    async (suggestion: google.maps.places.AutocompleteSuggestion) => {
+      if (!places) return;
+      if (!suggestion.placePrediction) return;
 
-  useEffect(() => {
-    if (!placeAutocomplete) return;
+      const place = suggestion.placePrediction.toPlace();
 
-    placeAutocomplete.addListener('place_changed', () => {
-      onPlaceSelect(placeAutocomplete.getPlace());
-    });
-  }, [onPlaceSelect, placeAutocomplete]);
+      await place.fetchFields({
+        fields: [
+          'viewport',
+          'location',
+          'svgIconMaskURI',
+          'iconBackgroundColor'
+        ]
+      });
+
+      setInputValue('');
+
+      // calling fetchFields invalidates the session-token, so we now have to call
+      // resetSession() so a new one gets created for further search
+      resetSession();
+
+      onPlaceSelect(place);
+    },
+    [places, onPlaceSelect]
+  );
 
   return (
-    <div className="autocomplete-container">
-      <input ref={inputRef} />
-    </div>
+    <MapControl position={ControlPosition.TOP_CENTER}>
+      <div className="autocomplete-control">
+        <div className="autocomplete-container">
+          <input
+            value={inputValue}
+            onInput={event => handleInput(event)}
+            placeholder="Search for a place"
+          />
+
+          {suggestions.length > 0 && (
+            <ul className="custom-list">
+              {suggestions.map((suggestion, index) => {
+                return (
+                  <li
+                    key={index}
+                    className="custom-list-item"
+                    onClick={() => handleSuggestionClick(suggestion)}>
+                    {suggestion.placePrediction?.text.text}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+      </div>
+    </MapControl>
   );
 };

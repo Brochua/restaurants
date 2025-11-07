@@ -14,7 +14,7 @@ export default function PlaceAutocomplete({onPlaceSelect}: Props) {
 
   const [inputValue, setInputValue] = useState<string>('');
   // Add a delay to not waste API calls
-  const debouncedValue = useDebounce(inputValue, 400);
+  const debouncedValue = useDebounce(inputValue, 200);
   const {suggestions, resetSession} = useAutocompleteSuggestions(debouncedValue, {
     includedPrimaryTypes: ['restaurant', 'store', 'cafe', 'supermarket', 'bar'],
     locationBias: map?.getBounds()?.toJSON()
@@ -33,11 +33,16 @@ export default function PlaceAutocomplete({onPlaceSelect}: Props) {
 
       await place.fetchFields({
         fields: [
-          'viewport',
+          'displayName',
+          'addressComponents',
+          'formattedAddress',
           'location',
-          'svgIconMaskURI',
-          'iconBackgroundColor'
-        ]
+          'types',
+          'nationalPhoneNumber',
+          'websiteURI',
+          'rating',
+          'regularOpeningHours'
+        ],
       });
 
       setInputValue('');

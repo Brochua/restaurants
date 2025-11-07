@@ -1,15 +1,9 @@
 import { APIProvider, Map, MapControl, ControlPosition } from "@vis.gl/react-google-maps";
-import { useState } from "react";
-// import MapHandler from "./MapHandler";
 import PlaceAutocomplete from "./PlaceAutocomplete";
 import AutocompleteResult from "./AutocompleteResult";
 
-export default function FindRestaurant() {
+export default function FindRestaurant({place, setPlace}: {place: google.maps.places.Place | null, setPlace: React.Dispatch<React.SetStateAction<google.maps.places.Place | null>>}) {
     const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-
-    const [selectedPlace, setSelectedPlace] =
-    useState<google.maps.places.Place | null>(null);
-    // const [markerRef, marker] = useAdvancedMarkerRef();
 
     return <section id="google-maps-container">
         <APIProvider
@@ -24,10 +18,10 @@ export default function FindRestaurant() {
             >
             <MapControl position={ControlPosition.TOP}>
                 <div className="autocomplete-control">
-                    <PlaceAutocomplete onPlaceSelect={setSelectedPlace} />
+                    <PlaceAutocomplete onPlaceSelect={setPlace} />
                 </div>
             </MapControl>
-            <AutocompleteResult place={selectedPlace} />
+            <AutocompleteResult place={place} />
             </Map>
         </APIProvider>
     </section>

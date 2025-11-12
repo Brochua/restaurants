@@ -72,7 +72,7 @@ export default function PlaceAutocomplete({onPlaceSelect}: Props) {
               {suggestions.map((suggestion, index) => {
                 return (
                   <li
-                    key={index}
+                    label={index}
                     className="custom-list-item"
                     onClick={() => handleSuggestionClick(suggestion)}>
                     {suggestion.placePrediction?.text.text}

@@ -6,7 +6,7 @@ export default function RestaurantInfo({restaurant}: {restaurant: IRestaurant}) 
     const stars = [];
     let rating = restaurant.rating;
     for (let i = 0; i < 5; i++) {
-        stars.push(<Star key={i} percentage={rating < 0 ? 0 : rating} />);
+        stars.push(<Star label={i} percentage={rating < 0 ? 0 : rating} />);
         rating--;
     }
     

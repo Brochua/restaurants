@@ -32,7 +32,7 @@ export default function RestaurantMap({restaurantsMap, focus}: {restaurantsMap: 
                 url={tileUrl}
                 />
             {restaurants.map(r => {
-                return <Marker key={`restaurant-${r.id}`} position={[r.latitude, r.longitude]} icon={createSvgIcon(r.id === focus ? "red" : undefined)} >
+                return <Marker label={`restaurant-${r.id}`} position={[r.latitude, r.longitude]} icon={createSvgIcon(r.id === focus ? "red" : undefined)} >
                     <Popup>
                         <RestaurantInfo restaurant={r} />
                     </Popup>

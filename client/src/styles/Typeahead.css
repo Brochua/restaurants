@@ -1,5 +1,8 @@
 .typeahead-search {
-    width: 100%;
+    flex: 1;
+    border: none;
+    outline: none;
+    min-width: 100px;
 }
 
 .typeahead-wrapper {
@@ -7,20 +10,31 @@
     width: 100%;
 }
 
+.typeahead-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    align-items: center;
+}
+
 .typeahead-options {
     width: 100%;
     position: absolute;
     left: 0;
-    top: 100%; /* places the dropdown just below the input */
+    top: 100%;
     box-sizing: border-box;
     background-color: white;
     border: 1px solid black;
+    border-radius: 4px;
     z-index: 1000;
 }
 
 .typeahead-option {
     display: flex;
     width: 100%;
-
     gap: 4px;
 }

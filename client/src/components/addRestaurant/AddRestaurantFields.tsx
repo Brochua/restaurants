@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import AddTypeahead from "../common/AddTypeahead";
 
 export default function AddRestaurantFields({place}: {place: google.maps.places.Place | null}) {
     // State for all form fields
@@ -9,8 +10,8 @@ export default function AddRestaurantFields({place}: {place: google.maps.places.
     const [area, setArea] = useState<string>('');
     const [phoneNumber, setPhoneNumber] = useState<string>('');
     const [website, setWebsite] = useState<string>('');
-    const [cuisines, setCuisines] = useState<string[]>([]);
-    const [categories, setCategories] = useState<string[]>([]);
+    const [tags, setTags] = useState<{[key: string]: boolean}>({});
+    const [categories, setCategories] = useState<{[key: string]: boolean}>({});
     const [location, setLocation] = useState<[number, number]>([0,0]);
     const [mapsRating, setMapsRating] = useState<number>();
     const [hours, setHours] = useState<string>();
@@ -44,10 +45,11 @@ export default function AddRestaurantFields({place}: {place: google.maps.places.
             setWebsite(p.websiteURI);
         }
         if (p.types) {
-            setCuisines(p.types);
-        }
-        if (p.types) {
-            setCategories(p.types);
+            setCategories(c => {
+                const newOptions = structuredClone(c);
+                p.types!.forEach(t => newOptions[t] = true);
+                return newOptions;
+            });
         }
         if (p.location) {
             setLocation([p.location?.lat(), p.location?.lng()]);
@@ -85,8 +87,8 @@ export default function AddRestaurantFields({place}: {place: google.maps.places.
                 },
                 body: JSON.stringify({
                     restaurant: restaurantData,
-                    cuisines,
-                    categories
+                    cuisines: Object.entries(tags).filter(t => t[1]).map(t => t[0]),
+                    categories: Object.entries(categories).filter(c => c[1]).map(c => c[0])
                 })
             })
     
@@ -139,24 +141,12 @@ export default function AddRestaurantFields({place}: {place: google.maps.places.
 
         <fieldset>
             <label htmlFor="cuisines">Cuisines:</label>
-            <input name="cuisines" value={cuisines.join(',')} onChange={e => setCuisines(e.target.value.split(','))} />
-            {/* <select multiple name="cuisines">
-                <option>goon</option>
-                <option>goon2</option>
-                <option>goon3</option>
-                <option>goon4</option>
-            </select> */}
+            <AddTypeahead options={tags} setOptions={setTags} />
         </fieldset>
 
         <fieldset>
             <label htmlFor="categories">Categories:</label>
-            <input name="categories" value={categories.join(',')} onChange={e => setCategories(e.target.value.split(','))} />
-            {/* <select multiple name="categories">
-                <option>goonie</option>
-                <option>goonie2</option>
-                <option>goonie3</option>
-                <option>goonie4</option>
-            </select> */}
+            <AddTypeahead options={categories} setOptions={setCategories} />
         </fieldset>
 
         <fieldset>
@@ -174,6 +164,6 @@ export default function AddRestaurantFields({place}: {place: google.maps.places.
             <input name="hours" value={hours} onChange={e => setHours(e.target.value)} />
         </fieldset>
 
-        <button onClick={submitRestaurant}>Create!</button>
+        <button className="create-restaurant" onClick={submitRestaurant}>Create!</button>
     </form>
 }

@@ -33,7 +33,8 @@
     align-items: center;
 }
 
-#modal-wrapper .modal button {
+#modal-wrapper .modal .add-controls button, 
+button.create-restaurant {
     padding: 5px;
 }
 
@@ -44,8 +45,9 @@
     justify-content: space-between;
 }
 
-#modal-wrapper .modal fieldset select, 
-#modal-wrapper .modal fieldset input {
+
+#modal-wrapper .modal fieldset > input,
+#modal-wrapper .modal fieldset > div.add-typeahead-wrapper {
     width: 60%;
 
     display: flex;

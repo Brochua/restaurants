@@ -1,8 +1,8 @@
 import { ControlPosition, MapControl, useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
 import { useState, useCallback, FormEvent } from "react";
 import { useAutocompleteSuggestions } from "../../hooks/useAutocompleteSuggestions";
-import '../../styles/PlacesAutocomplete.css';
 import { useDebounce } from "../../hooks/useDebounce";
+import '../../styles/PlacesAutocomplete.css';
 
 interface Props {
   onPlaceSelect: (place: google.maps.places.Place | null) => void;
@@ -53,6 +53,7 @@ export default function PlaceAutocomplete({onPlaceSelect}: Props) {
 
       onPlaceSelect(place);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [places, onPlaceSelect]
   );
 

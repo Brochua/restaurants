@@ -38,7 +38,7 @@ async function getRestaurants(req: Request, res: Response, next: NextFunction) {
       return res.status(400).json({ message: 'page and limit parameters must be greater than 0'});
     }
 
-    const where: WhereOptions = [];
+    const where: WhereOptions = {};
     const include: Includeable[] = [];
 
     if (all) {
@@ -56,7 +56,7 @@ async function getRestaurants(req: Request, res: Response, next: NextFunction) {
         ],
       );
 
-      const totalPages = await getTotalPages(limit, undefined, undefined);
+      const totalPages = await getTotalPages(limit);
 
       return res.status(200).json({
         restaurants,
@@ -66,11 +66,11 @@ async function getRestaurants(req: Request, res: Response, next: NextFunction) {
     }
 
     if (name) {
-      where.push({name: name});
+      where.name = name;
     }
 
     if (area) {
-      where.push({area: area});
+      where.area = area;
     }
 
     include.push({
@@ -87,7 +87,7 @@ async function getRestaurants(req: Request, res: Response, next: NextFunction) {
       through: { attributes: [] }
     })
 
-    const totalPages = await getTotalPages(limit, where, include);
+    const totalPages = await getTotalPages(limit, where);
     
     if (page > totalPages) {
       return res.status(404).json({ message: 'Page not found' });
@@ -158,14 +158,10 @@ async function getPageCount(req: Request, res: Response, next: NextFunction) {
  * @function getTotalPages
  * @param {number} limit - The maximum number of items per page
  * @param {object[]} where - An optional where clause array
- * @param {object[]} include - An optional includes clause array
  * @returns {Promise<number>} The total number of pages.
  */
-async function getTotalPages(limit: number, where: WhereOptions = [], include: Includeable[] = []) {
-  const count = await Restaurant.count({
-    where,
-    include,
-  });
+async function getTotalPages(limit: number, where: WhereOptions = {}): Promise<number> {
+  const count = await Restaurant.count({ where });
   return Math.ceil(count / limit);
 }
 

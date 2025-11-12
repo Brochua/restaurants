@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect, KeyboardEvent, useMemo } from "react";
-import '../../styles/Typeahead.css';
 import { capitalize } from "../../utils";
+import '../../styles/Typeahead.css';
 
 export type TypeaheadOptions = {[key: string]: boolean}
 
-export default function TypeaheadDropdown({label, options, setOptions}: {label: string, options: TypeaheadOptions, setOptions: React.Dispatch<React.SetStateAction<TypeaheadOptions>>}) {
+export default function TypeaheadDropdown({label, options, setOptions, inputRef}: {label: string, options: TypeaheadOptions, setOptions: React.Dispatch<React.SetStateAction<TypeaheadOptions>>, inputRef?: React.RefObject<HTMLInputElement | null>}) {
     const wrapperRef = useRef<HTMLDivElement|null>(null);
     const [open, setOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
@@ -15,7 +15,7 @@ export default function TypeaheadDropdown({label, options, setOptions}: {label: 
 
     useEffect(() => {
         function handleClickOutside(e: MouseEvent) {
-            if (!wrapperRef.current) return;
+            if (!wrapperRef.current || !e.target) return;
             if (!wrapperRef.current.contains(e.target as Node)) {
                 setOpen(false);
             }
@@ -40,8 +40,8 @@ export default function TypeaheadDropdown({label, options, setOptions}: {label: 
     }
 
     return <div className="typeahead-wrapper" ref={wrapperRef}>
-        <label htmlFor={`${label}-search-box`}>{label}</label>
-        <input name={`${label}-search-box`} className="typeahead-search" onChange={(e) => {setSearchQuery(e.target.value)}} onKeyDown={handleKeyDown} onFocus={() => setOpen(true)} />
+        <label htmlFor={`${label}-search-box`} className="typeahead-search-label">{label}</label>
+        <input ref={inputRef} name={`${label}-search-box`} className="typeahead-search" onChange={(e) => {setSearchQuery(e.target.value)}} onKeyDown={handleKeyDown} onFocus={() => setOpen(true)} />
         <ul className="typeahead-options" style={{display: open ? "block" : "none"}}>
             {filteredOptions.map(o => {
                 return <li className="typeahead-option" key={`${o}-option`} onClick={() => toggleOption(o)}>

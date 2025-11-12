@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { IRestaurant } from "../utils";
 
 interface RestaurantsMapType {
@@ -9,8 +9,25 @@ interface RestaurantsMapType {
 export const RestaurantsMapContext = createContext<RestaurantsMapType>({} as RestaurantsMapType);
 
 export function RestaurantMapProvider({ children }: { children: React.ReactNode }) {
-
   const [restaurantsMap, setRestaurantsMap] = useState<{[key: string]: IRestaurant}>({});
+
+  useEffect(() => {
+        const getRestaurants = async () => {
+            console.log("GETTING RESTAURANTS");
+            const resp = await fetch('/api/restaurants');
+            if (resp.ok) {
+                const json = await resp.json();
+
+                const restaurants: IRestaurant[] = json.restaurants;
+                setRestaurantsMap(restaurants.reduce((acc, curr) => {
+                    curr.enabled = true;
+                    acc[curr.id] = curr;
+                    return acc;
+                }, {} as {[key: string]: IRestaurant}));
+            }
+        };
+        getRestaurants();
+    }, []);
 
   return (
     <RestaurantsMapContext.Provider value={{ restaurantsMap, setRestaurantsMap }}>

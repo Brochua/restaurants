@@ -2,13 +2,20 @@
     width: 100%;
 }
 
+.typeahead-wrapper {
+    position: relative;
+    width: 100%;
+}
+
 .typeahead-options {
     width: 100%;
-    
-    position: fixed;
-
+    position: absolute;
+    left: 0;
+    top: 100%; /* places the dropdown just below the input */
+    box-sizing: border-box;
     background-color: white;
     border: 1px solid black;
+    z-index: 1000;
 }
 
 .typeahead-option {

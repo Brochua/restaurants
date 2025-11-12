@@ -12,6 +12,21 @@ const MAX_RETRIES_DB = Number(process.env.DB_CONNECTION_MAX_RETRIES || 3);
 
 let server: Server;
 
+for (let i = 0; i < MAX_RETRIES_DB; i++) {
+    try {
+        await connectDB();
+        console.log('Connection has been established successfully.');
+        break;
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+        if (i + 1 === MAX_RETRIES_DB) {
+            cleanup();
+        } else {
+            console.log("Retrying database connection...")
+        }
+    }
+}
+
 for (let i = 0; i < MAX_RETRIES_SERVER; i++) {
     try {
         server = app.listen(port, () => 
@@ -25,21 +40,6 @@ for (let i = 0; i < MAX_RETRIES_SERVER; i++) {
             cleanup();
         } else {
             console.log("Retrying server startup...")
-        }
-    }
-}
-
-for (let i = 0; i < MAX_RETRIES_DB; i++) {
-    try {
-        connectDB();
-        console.log('Connection has been established successfully.');
-        break;
-    } catch (error) {
-        console.error('Unable to connect to the database:', error);
-        if (i + 1 === MAX_RETRIES_DB) {
-            cleanup();
-        } else {
-            console.log("Retrying database connection...")
         }
     }
 }

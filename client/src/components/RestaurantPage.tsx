@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { IRestaurant } from "../utils";
+import { useContext, useState } from "react";
 import RestaurantMap from "./map/RestaurantMap";
 import { RestaurantsMapContext } from "../hooks/useRestaurantsMap";
 import { createPortal } from "react-dom";
@@ -9,26 +8,9 @@ import '../styles/RestaurantList.css';
 
 
 export default function RestaurantPage() {
-    const {restaurantsMap, setRestaurantsMap} = useContext(RestaurantsMapContext);
+    const {restaurantsMap} = useContext(RestaurantsMapContext);
     const [focus, setFocus] = useState<string | undefined>(undefined)
     const [showCreateModal, setShowCreateModal] = useState<boolean>(false);
-
-    useEffect(() => {
-        const getRestaurants = async () => {
-            const resp = await fetch('/api/restaurants');
-            if (resp.ok) {
-                const json = await resp.json();
-
-                const restaurants: IRestaurant[] = json.restaurants;
-                setRestaurantsMap(restaurants.reduce((acc, curr) => {
-                    curr.enabled = true;
-                    acc[curr.id] = curr;
-                    return acc;
-                }, {} as {[key: string]: IRestaurant}));
-            }
-        };
-        getRestaurants();
-    }, [setRestaurantsMap]);
 
     return <div id="restaurants-map-page">
         <RestaurantList setFocus={setFocus} />

@@ -16,6 +16,7 @@ export default function AddRestaurantFields({place}: {place: google.maps.places.
     const [mapsRating, setMapsRating] = useState<number>();
     const [hours, setHours] = useState<string>();
     const mapsPlaceId = useRef<string>(undefined);
+    console.log(categories)
 
     useEffect(() => populateFieldsFromPlace(place), [place])
 

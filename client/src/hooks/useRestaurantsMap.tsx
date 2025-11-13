@@ -13,7 +13,6 @@ export function RestaurantMapProvider({ children }: { children: React.ReactNode 
 
   useEffect(() => {
         const getRestaurants = async () => {
-            console.log("GETTING RESTAURANTS");
             const resp = await fetch('/api/restaurants');
             if (resp.ok) {
                 const json = await resp.json();

@@ -4,10 +4,11 @@ import path from 'path';
 import compression from 'compression';
 import { fileURLToPath } from 'url';
 import restaurants from './routers/restaurant.router.js';
+import tags from './routers/tag.router.js';
+import categories from './routers/category.router.js';
 
 dotenv.config();
 const app = express();
-
 
 app.use(compression());
 app.use(express.json());
@@ -32,6 +33,8 @@ app.get('/api/alive', (req, res) => {
 });
 
 app.use('/api', restaurants);
+app.use('/api', tags);
+app.use('/api', categories);
 
 // app.get('/api/health', (req, res) => {
 //   res.set('Cache-Control', 'max-age=300');

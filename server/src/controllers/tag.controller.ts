@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import Cuisine from "../models/Cuisine.model";
+import Cuisine from "../models/Cuisine.model.js";
 
 export default async function getTags(req: Request, res: Response) {
     const tags = await Cuisine.findAll({

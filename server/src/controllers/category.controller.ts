@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import Category from "../models/Category.model";
+import Category from "../models/Category.model.js";
 
 export default async function getCategories(req: Request, res: Response) {
     const ids = await Category.findAll({

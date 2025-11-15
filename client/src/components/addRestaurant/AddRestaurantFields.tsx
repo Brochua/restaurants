@@ -97,6 +97,8 @@ export default function AddRestaurantFields({place}: {place: google.maps.places.
                 alert("Wooo created")
                 window.location.reload();
             } else {
+                const json = await createResponse.json();
+                alert("ERROR CREATING:" + json.message)
                 console.error("something went wrong", createResponse)
             }
         } catch (e) {

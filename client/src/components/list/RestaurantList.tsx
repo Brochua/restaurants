@@ -19,7 +19,7 @@ export default function RestaurantList({setFocus}: {setFocus: React.Dispatch<Rea
             const oldTagOptions = structuredClone(prev);
             tags.forEach(t => {
                 if (!(t in oldTagOptions)) {
-                    oldTagOptions[t] = true;
+                    oldTagOptions[t] = false;
                 }
             });
             return oldTagOptions
@@ -31,7 +31,7 @@ export default function RestaurantList({setFocus}: {setFocus: React.Dispatch<Rea
             const oldCategoryOptions = structuredClone(prev);
             categories.forEach(c => {
                 if (!(c in oldCategoryOptions)) {
-                    oldCategoryOptions[c] = true;
+                    oldCategoryOptions[c] = false;
                 }
             });
             return oldCategoryOptions
@@ -39,8 +39,14 @@ export default function RestaurantList({setFocus}: {setFocus: React.Dispatch<Rea
     }, [categories])
 
     const filteredRestaurants = useMemo(() => {
-        return (Object.values(restaurantsMap) as IRestaurant[]).filter(r => r.name.toLowerCase().includes(searchQuery));
-    }, [restaurantsMap, searchQuery]);
+        const selectedCategories = Object.entries(categoryOptions).filter(([, v]) => !!v).map(([k,]) => k);
+        const selectedTags = Object.entries(tagOptions).filter(([, v]) => !!v).map(([k,]) => k);
+
+        return (Object.values(restaurantsMap) as IRestaurant[])
+                .filter(r => r.name.toLowerCase().includes(searchQuery))
+                .filter(r => selectedCategories.some(c => r.categories.includes(c)) || selectedCategories.length === 0)
+                .filter(r => selectedTags.some(t => r.cuisines.includes(t)) || selectedTags.length === 0);
+    }, [restaurantsMap, searchQuery, categoryOptions, tagOptions]);
 
     return <aside id="restaurant-list">
         <div id="search-area">

@@ -181,34 +181,38 @@ async function createRestaurant(req: Request, res: Response, next: NextFunction)
   }
 
 
-  const cuisinesTuples = await Promise.all((cuisines || []).map((c: string) => {
-    return Cuisine.findOrCreate({
-      where: { id: c.toLowerCase() },
-      defaults: { id: c.toLowerCase() }
-    });
-  }));
-  const cuisinesModels = cuisinesTuples.map(([instance]) => instance);
+  try {
+    const cuisinesTuples = await Promise.all((cuisines || []).map((c: string) => {
+      return Cuisine.findOrCreate({
+        where: { id: c.toLowerCase() },
+        defaults: { id: c.toLowerCase() }
+      });
+    }));
+    const cuisinesModels = cuisinesTuples.map(([instance]) => instance);
 
 
-  const categoriesTuples = await Promise.all((categories || []).map((c: string) => {
-    return Category.findOrCreate({
-      where: { id: c.toLowerCase() },
-      defaults: { id: c.toLowerCase() }
-    });
-  }));
-  const categoriesModels = categoriesTuples.map(([instance]) => instance);
+    const categoriesTuples = await Promise.all((categories || []).map((c: string) => {
+      return Category.findOrCreate({
+        where: { id: c.toLowerCase() },
+        defaults: { id: c.toLowerCase() }
+      });
+    }));
+    const categoriesModels = categoriesTuples.map(([instance]) => instance);
 
 
-  const newRestaurant = await Restaurant.create(restaurant);
+    const newRestaurant = await Restaurant.create(restaurant);
 
-  if (categoriesModels.length) {
-    await (newRestaurant as any).addCategories(categoriesModels);
+    if (categoriesModels.length) {
+      await (newRestaurant as any).addCategories(categoriesModels);
+    }
+    if (cuisinesModels.length) {
+      await (newRestaurant as any).addCuisines(cuisinesModels);
+    }
+
+    return res.status(201).json({ id: (newRestaurant as any).id });
+  } catch (e) {
+    return next(e);
   }
-  if (cuisinesModels.length) {
-    await (newRestaurant as any).addCuisines(cuisinesModels);
-  }
-
-  return res.status(201).json({ id: (newRestaurant as any).id });
 }
 
 /**

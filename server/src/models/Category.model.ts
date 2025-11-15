@@ -9,7 +9,7 @@ interface CategoryAttributes {
 const Category = sequelize.define<Model<CategoryAttributes>>('Category', {
     id: {
         primaryKey: true,
-        type: DataTypes.STRING(15),
+        type: DataTypes.STRING(31),
     }
 }, {timestamps: false});
 

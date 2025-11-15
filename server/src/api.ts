@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { type NextFunction, type Request, type Response } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import compression from 'compression';
@@ -59,7 +59,7 @@ app.use((_, res) => {
 });
 
 
-app.use((err: { message: any; status: any; }, _: any, res: { status: (arg0: any) => void; json: (arg0: { message: any; }) => void; }, _next: any) => {
+app.use((err: {message: string; status: number}, _req: Request, res: Response) => {
   console.error(err);
   const error = app.get('env') !== 'production' ? err.message : {};
   res.status(err.status || 500);

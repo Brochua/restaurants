@@ -27,6 +27,6 @@ export async function connectDB() {
     }
     await sequelize.authenticate();
     if (process.env.NODE_ENV !== "production") {
-        // await sequelize.sync({ alter: true });
+        await sequelize.sync({ alter: true });
     }
 }

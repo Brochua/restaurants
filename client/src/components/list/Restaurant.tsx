@@ -5,8 +5,8 @@ import { IRestaurant } from "../../utils";
 
 export default function Restaurant({restaurant, setFocus}: {restaurant: IRestaurant, setFocus: React.Dispatch<React.SetStateAction<string | undefined>>}) {
     const {setRestaurantsMap} = useContext(RestaurantsMapContext);
-    const categories = restaurant.categories.map((t, i) => <li label={`type-${i}`}>{t}</li>);
-    const cuisines = restaurant.cuisines.map((c, i) => <li label={`cuisine-${i}`}>{c}</li>);
+    const categories = restaurant.categories.map((t, i) => <li key={`type-${i}`}>{t}</li>);
+    const cuisines = restaurant.cuisines.map((c, i) => <li key={`cuisine-${i}`}>{c}</li>);
 
     useEffect(() => {
         const value = localStorage.getItem(`restaurant-${restaurant.id}`);
@@ -39,7 +39,7 @@ export default function Restaurant({restaurant, setFocus}: {restaurant: IRestaur
         setFocus(restaurant.id);
     }
 
-    return <div className="restaurant" onClick={selectMarker}>
+    return <div key={`list-entry-${restaurant.name}`} className="restaurant" onClick={selectMarker}>
         <input type="checkbox" name="box" onChange={checkboxChange} defaultChecked={restaurant.enabled} />
         <div className="left-side">
             <h2>{restaurant.name}</h2>

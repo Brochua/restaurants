@@ -58,6 +58,6 @@ export default function RestaurantList({setFocus}: {setFocus: React.Dispatch<Rea
                 <TypeaheadDropdown label="Categories" options={categoryOptions} setOptions={setCategoryOptions} />
             </div>
         </div>
-        {filteredRestaurants.map(restaurant => <Restaurant restaurant={restaurant} label={`restaurant-${restaurant.id}`} setFocus={setFocus}/>)}
+        {filteredRestaurants.map(restaurant => <Restaurant restaurant={restaurant} key={`restaurant-${restaurant.id}`} setFocus={setFocus}/>)}
     </aside>
 }

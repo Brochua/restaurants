@@ -1,12 +1,12 @@
 import { capitalize, IRestaurant } from "../../utils";
-import '../../styles/RestaurantInfo.css'
 import Star from "../icons/Star";
+import '../../styles/RestaurantInfo.css'
 
 export default function RestaurantInfo({restaurant}: {restaurant: IRestaurant}) {
     const stars = [];
     let rating = restaurant.rating;
     for (let i = 0; i < 5; i++) {
-        stars.push(<Star label={i} percentage={rating < 0 ? 0 : rating} />);
+        stars.push(<Star key={`star-${i}`} percentage={rating < 0 ? 0 : rating} />);
         rating--;
     }
     
@@ -25,7 +25,7 @@ export default function RestaurantInfo({restaurant}: {restaurant: IRestaurant}) 
             ({restaurant.rating})
         </div>
         <ul>
-            {restaurant.hours?.map(h => <li>{h}</li>)}
+            {restaurant.hours?.map((h, i) => <li key={`hours-${i}`} >{h}</li>)}
         </ul>    
     </div>
 }

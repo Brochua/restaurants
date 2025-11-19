@@ -1,8 +1,8 @@
-export default function Star({ percentage }: {percentage: number}) {
+export default function Star({ percentage, key }: {percentage: number; key: string}) {
     const fillWidth = percentage * 24;
     
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24">
+        <svg key={key} xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24">
             <defs>
                 <mask id={`mask-${percentage}`}>
                     <rect width="24" height="24" fill="white" />

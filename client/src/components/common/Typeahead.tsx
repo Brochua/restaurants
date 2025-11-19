@@ -88,11 +88,11 @@ export default function TypeaheadDropdown({label, options, setOptions, inputRef,
             <li className="typeahead-option" onClick={selectAll}>
                 <input name="select-all" type="checkbox" checked={isAllSelected} readOnly /><label htmlFor="select-all">Select All</label>
             </li>
-            {filteredOptions.map(o => {
-                return <li className="typeahead-option" onClick={() => toggleOption(o)}>
+            {filteredOptions.map(o => (
+                <li key={`option-${o}`} className="typeahead-option" onClick={() => toggleOption(o)}>
                     <input name={o} type="checkbox" checked={options[o]} readOnly /><label htmlFor={o}>{capitalize(o)}</label>
                 </li>
-            })}
+            ))}
         </ul>
     </div>
 }
